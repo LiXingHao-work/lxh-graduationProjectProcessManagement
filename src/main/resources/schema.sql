@@ -6,8 +6,8 @@ create table if not exists `user`
     password     varchar(20) not null,
     role         tinyint     not null comment '角色: 1.教师 2.学生 5.管理员',
     group_number smallint    null,
-    student      json        null comment '{"teacherId", "teacherName", "grade", "projectTitle"}',#老师id,老师姓名,年级排名,项目名
-    teacher      json        null comment '{"count"}',#所带学生数
+    student      json        null comment '{"teacherId", "teacherName", "grade", "projectTitle"}',/*老师id,老师姓名,年级排名,项目名*/
+    teacher      json        null comment '{"count"}',/*所带学生数*/
     insert_time  datetime    not null default current_timestamp,
     update_time  datetime    not null default current_timestamp on update current_timestamp,
 
@@ -20,7 +20,7 @@ create table if not exists `process`
 (
     id          char(19)    not null primary key,
     name        varchar(20) not null,
-    items       json        null comment '[{"number", "name", "point"}]',#子项号,子项名,子项占比
+    items       json        null comment '[{"number", "name", "point"}]',/*子项号,子项名,子项占比*/
     update_time datetime default current_timestamp on update current_timestamp,
     create_time datetime default current_timestamp
 ) comment '过程表';
@@ -31,14 +31,14 @@ create table if not exists `process_score`
     student_id  char(19) not null,
     process_id  char(19) not null,
     teacher_id  char(19) not null,
-    detail      json     not null comment '{"teacherName", "score", detail: [{"number", "score"}]}',#老师id,总成绩,子项号及成绩
+    detail      json     not null comment '{"teacherName", "score", detail: [{"number", "score"}]}',/*老师id,总成绩,子项号及成绩*/
     update_time datetime default current_timestamp on update current_timestamp comment '修改时间',
     create_time datetime default current_timestamp comment '创建时间',
 
     unique (process_id, student_id, teacher_id)
 ) comment '过程项表';
 
-INSERT INTO `user` (`name`, `account`, `password`, `role`, `group_number`, `student`)
+/*INSERT INTO `user` (`name`, `account`, `password`, `role`, `group_number`, `student`)
 VALUES ('张三', 'zhangsan123', 'password123', 2, 1, '{
   "teacherId": "1",
   "teacherName": "李老师",
@@ -158,4 +158,4 @@ VALUES ('张三', 'zhangsan123', 'password123', 2, 1, '{
          "teacherName": "崔老师",
          "grade": "16",
          "projectTitle": "qwd"
-       }');
+       }');*/
