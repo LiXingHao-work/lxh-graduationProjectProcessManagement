@@ -1,5 +1,9 @@
-package com.lxh.dto;
+package com.lxh.pojo.dox;
 
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.extension.handlers.JacksonTypeHandler;
+import com.lxh.pojo.info.DetailInfo;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -13,6 +17,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@TableName(value = "process_score", autoResultMap = true)
 public class ProcessScore {
     @Id
     @CreatedBy
@@ -20,7 +25,9 @@ public class ProcessScore {
     private String student_id;
     private String process_id;
     private String teacher_id;
-    private String detail;
+    //json
+    @TableField(typeHandler = JacksonTypeHandler.class)
+    private DetailInfo detail;
     private LocalDateTime update_time;
     private LocalDateTime create_time;
 }

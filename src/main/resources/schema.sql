@@ -6,7 +6,7 @@ create table if not exists `user`
     password     varchar(20) not null,
     role         tinyint     not null comment '角色: 1.教师 2.学生 5.管理员',
     group_number smallint    null,
-    student      json        null comment '{"teacherId", "teacherName", "grade", "projectTitle"}',/*老师id,老师姓名,年级排名,项目名*/
+    student      json        null comment '{"teacherId", "teacherName", "gradeRanking", "projectTitle"}',/*老师id,老师姓名,年级排名,项目名*/
     teacher      json        null comment '{"count"}',/*所带学生数*/
     insert_time  datetime    not null default current_timestamp,
     update_time  datetime    not null default current_timestamp on update current_timestamp,

@@ -1,5 +1,10 @@
-package com.lxh.dto;
+package com.lxh.pojo.dox;
 
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.extension.handlers.JacksonTypeHandler;
+import com.lxh.pojo.info.StudentInfo;
+import com.lxh.pojo.info.TeacherInfo;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -14,6 +19,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@TableName(value = "user", autoResultMap = true)
 public class User {
     //'角色: 1.教师 2.学生 5.管理员'
     public static final int TEACHER = 1;
@@ -28,9 +34,11 @@ public class User {
     private Integer role;
     private Integer groupNumber;
     //json
-    private String student;
+    @TableField(typeHandler = JacksonTypeHandler.class)
+    private StudentInfo student;
     //json
-    private String teacher;
+    @TableField(typeHandler = JacksonTypeHandler.class)
+    private TeacherInfo teacher;
     @ReadOnlyProperty
     private LocalDateTime updateTime;
     @ReadOnlyProperty
