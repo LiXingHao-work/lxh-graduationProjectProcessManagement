@@ -21,13 +21,14 @@ import java.time.LocalDateTime;
 @Builder
 @TableName(value = "user", autoResultMap = true)
 public class User {
-    //'角色: 1.教师 2.学生 5.管理员'
-    public static final int TEACHER = 1;
-    public static final int STUDENT = 2;
-    public static final int ADMIN = 5;
+    //'角色: 1.学生 5.教师 10.管理员'
+    public static final Integer STUDENT = 1;
+    public static final int TEACHER = 5;
+    public static final int ADMIN = 10;
     @Id
     @CreatedBy
     private String id;
+    private LocalDateTime description;
     private String name;
     private String account;
     private String password;
