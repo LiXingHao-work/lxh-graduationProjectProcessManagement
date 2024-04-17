@@ -4,10 +4,11 @@ create table if not exists `user`
     name         char(10)    not null,
     account      varchar(20) not null,
     password     varchar(20) not null,
+    description  varchar(600) null,
     role         tinyint     not null comment '角色: 1.教师 2.学生 5.管理员',
-    group_number smallint    null,
+    group_number smallint    null comment '组号',
     student      json        null comment '{"teacherId", "teacherName", "gradeRanking", "projectTitle"}',/*老师id,老师姓名,年级排名,项目名*/
-    teacher      json        null comment '{"count"}',/*所带学生数*/
+    teacher      json        null comment '{"count", "total"}',/*所带学生数,最多带学生数*/
     insert_time  datetime    not null default current_timestamp,
     update_time  datetime    not null default current_timestamp on update current_timestamp,
 
@@ -37,6 +38,7 @@ create table if not exists `process_score`
 
     unique (process_id, student_id, teacher_id)
 ) comment '过程项表';
+
 
 /*INSERT INTO `user` (`name`, `account`, `password`, `role`, `group_number`, `student`)
 VALUES ('张三', 'zhangsan123', 'password123', 2, 1, '{
